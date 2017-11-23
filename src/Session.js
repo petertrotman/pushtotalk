@@ -45,6 +45,8 @@ class Session extends React.Component {
         const val = dataSnapshot.val();
         if (val != null) {
           this.setState({ users: val });
+        } else {
+          this.setState({ users: [] });
         }
       });
 
@@ -54,6 +56,8 @@ class Session extends React.Component {
         const val = dataSnapshot.val();
         if (val != null) {
           this.setState({ requests: val });
+        } else {
+          this.setState({ requests: [] });
         }
       });
   }
