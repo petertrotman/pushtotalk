@@ -1,5 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const StyledHome = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > * {
+      display: block;
+      margin: 0.5em 0;
+    }
+
+    input {
+    }
+
+    button {
+    }
+  }
+`;
 
 class Home extends React.Component {
   constructor() {
@@ -33,7 +57,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
+      <StyledHome>
         <h1>Push to Talk</h1>
         <form>
           <input type="text" id="username" placeholder="Your Name" value={this.props.user} onChange={e => this.handleUserChange(e)} />
@@ -42,7 +66,7 @@ class Home extends React.Component {
           <span>or</span>
           <button type="submit" onClick={e => this.handleNew(e)}>Create a new session</button>
         </form>
-      </div>
+      </StyledHome>
     );
   }
 }

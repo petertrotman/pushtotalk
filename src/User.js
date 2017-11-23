@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const User = ({ name, self, owner, request, handleRequest }) => (
+const User = ({
+  name, self, owner, request, handleRequest,
+}) => (
   <div>
     { self || owner
         ? <button onClick={() => handleRequest(name)}>{ name }</button>

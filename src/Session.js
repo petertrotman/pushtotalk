@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import firebase from 'firebase/app';
 
 import User from './User';
+
+const StyledSession = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 class Session extends React.Component {
   constructor({ match }) {
@@ -82,7 +89,7 @@ class Session extends React.Component {
     if (!this.state.owner) { return <h2>Connecting...</h2>; }
 
     return (
-      <div>
+      <StyledSession>
         <h2>{ this.state.owner }&rsquo;s session.</h2>
         { this.state.users.map(user => (
           <User
@@ -94,7 +101,7 @@ class Session extends React.Component {
             handleRequest={() => this.handleRequest(user)}
           />
         )) }
-      </div>
+      </StyledSession>
     );
   }
 }
