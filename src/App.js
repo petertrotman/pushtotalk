@@ -24,12 +24,14 @@ const StyledApp = styled.div`
 class App extends React.Component {
   constructor() {
     super();
+
     this.state = {
-      user: '',
+      user: window.localStorage.getItem('user') || '',
     };
   }
 
   handleChangeUser(newValue) {
+    window.localStorage.setItem('user', newValue);
     this.setState({ user: newValue });
   }
 

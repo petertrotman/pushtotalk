@@ -5,7 +5,6 @@ import 'firebase/database';
 
 import App from './App';
 
-
 firebase.initializeApp({
   apiKey: 'AIzaSyDwEQX-tKqE9wBTXSOo931ODnF2gqI076E ',
   authDomain: 'pushtotalk-413d4.firebaseapp.com',
