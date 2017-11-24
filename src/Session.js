@@ -192,11 +192,6 @@ class Session extends React.Component {
 
 Session.propTypes = {
   user: PropTypes.string.isRequired,
-  history: PropTypes.shape({
-    goBack: PropTypes.func,
-    push: PropTypes.func,
-  }).isRequired,
-  handleChangeUser: PropTypes.func.isRequired,
 };
 
 export default Session;

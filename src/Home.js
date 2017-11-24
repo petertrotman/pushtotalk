@@ -43,28 +43,69 @@ class Home extends React.Component {
 
   handleJoin(e) {
     e.preventDefault();
-    return this.props.history.push({
-      pathname: `/session/${this.state.sessionId}`,
-    });
+
+    this.form.querySelector('input#username').setAttribute('required', '');
+    this.form.querySelector('input#sessionid').setAttribute('required', '');
+
+    if (this.isFormValid()) {
+      this.props.history.push(`/session/${this.state.sessionId}`);
+    }
   }
 
-  handleNew(e) {
+  handleCreate(e) {
     e.preventDefault();
-    return this.props.history.push({
-      pathname: '/create',
-    });
+
+    this.form.querySelector('input#username').setAttribute('required', '');
+    this.form.querySelector('input#sessionid').removeAttribute('required');
+
+    if (this.isFormValid()) {
+      this.props.history.push('/create');
+    }
+  }
+
+  registerForm(el) {
+    this.form = el;
+  }
+
+  isFormValid() {
+    return Array
+      .from(this.form.querySelectorAll('input'))
+      .reduce((valid, el) => {
+        if (!el.checkValidity()) {
+          return false;
+        }
+        return valid;
+      }, true);
   }
 
   render() {
     return (
       <StyledHome>
         <h1>Push to Talk</h1>
-        <form>
-          <input type="text" id="username" placeholder="Your Name" value={this.props.user} onChange={e => this.handleUserChange(e)} />
-          <input type="text" id="sessionid" placeholder="Session ID" value={this.state.sessionId} onChange={e => this.handleSessionIdChange(e)} />
+        <form ref={el => this.registerForm(el)}>
+          <label htmlFor="username" type="text">
+            Your Name
+            <input
+              type="text"
+              id="username"
+              placeholder="Your Name"
+              value={this.props.user}
+              onChange={e => this.handleUserChange(e)}
+            />
+          </label>
+          <label htmlFor="sessionid" type="text">
+            Session ID
+            <input
+              type="text"
+              id="sessionid"
+              placeholder="Session ID"
+              value={this.state.sessionId}
+              onChange={e => this.handleSessionIdChange(e)}
+            />
+          </label>
           <button type="submit" onClick={e => this.handleJoin(e)}>Join session</button>
           <span>or</span>
-          <button type="submit" onClick={e => this.handleNew(e)}>Create a new session</button>
+          <button type="submit" onClick={e => this.handleCreate(e)}>Create a new session</button>
         </form>
       </StyledHome>
     );
