@@ -54,16 +54,27 @@ const StyledApp = styled.div`
       margin: 0.5em 0;
     }
 
-    label {
-      > input {
-        display: block;
-      }
-    }
-
     input {
+      display: block;
+      height: 1.4em;
+      margin: 0.1em 0;
     }
 
     button {
+      all: unset;
+      cursor: pointer;
+      color: ${theme.colours.primary};
+      padding: 0.7em;
+      margin: 0.2em;
+      border: solid;
+      border-width: 1px;
+      border-color: ${theme.colours.primary};
+      border-radius: 0.5em;
+
+      :hover {
+        color: ${theme.colours.primarydark};
+        border-color: ${theme.colours.primarydark};
+      }
     }
   }
 `;
