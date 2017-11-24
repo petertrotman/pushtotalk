@@ -3,15 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledName = styled.div`
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    > * {
-      margin: 0.5em 0;
-    }
-  }
 `;
 
 const Name = ({ user, handleChangeUser, history }) => (

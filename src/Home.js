@@ -6,23 +6,6 @@ const StyledHome = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    > * {
-      display: block;
-      margin: 0.5em 0;
-    }
-
-    input {
-    }
-
-    button {
-    }
-  }
 `;
 
 class Home extends React.Component {
@@ -81,7 +64,6 @@ class Home extends React.Component {
   render() {
     return (
       <StyledHome>
-        <h1>Push to Talk</h1>
         <form ref={el => this.registerForm(el)}>
           <label htmlFor="username" type="text">
             Your Name

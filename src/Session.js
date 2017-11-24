@@ -3,22 +3,18 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import firebase from 'firebase/app';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import User from './User';
 
 const StyledSession = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  max-width: 534px;
+  margin: 0 1em;
+`;
 
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    > * {
-      display: block;
-      margin: 0.5em 0;
-    }
+const StyledUsers = styled.div`
+  margin-left: 1em;
 `;
 
 class Session extends React.Component {
@@ -152,21 +148,21 @@ class Session extends React.Component {
 
     if (this.state.error) {
       return (
-        <div>
+        <StyledSession>
           <h2>An error occurred.</h2>
           { this.state.error === 'USER_ALREADY_IN_SESSION' &&
             <div>
               <p>There is already someone called { this.props.user } in the session.</p>
-              <p>Please <a href={`${window.location.pathname}/name`}>choose another name.</a></p>
+              <p>Please <Link to={`${window.location.pathname}/name`}>choose another name.</Link></p>
             </div>
           }
           { this.state.error === 'SESSION_DOES_NOT_EXIST' &&
             <div>
               <p>This session does not exist.</p>
-              <p>Why not <a href="/">create one?</a></p>
+              <p>Why not <Link to="/">create one?</Link></p>
             </div>
           }
-        </div>
+        </StyledSession>
       );
     }
 
@@ -175,16 +171,18 @@ class Session extends React.Component {
     return (
       <StyledSession>
         <h2>{ this.state.owner }&rsquo;s session.</h2>
-        { this.state.users.map(user => (
-          <User
-            key={user}
-            name={user}
-            self={this.props.user === user}
-            owner={this.props.user === this.state.owner}
-            request={this.state.requests.includes(user)}
-            handleRequest={() => this.handleRequest(user)}
-          />
-        )) }
+        <StyledUsers>
+          { this.state.users.map(user => (
+            <User
+              key={user}
+              name={user}
+              self={this.props.user === user}
+              owner={this.props.user === this.state.owner}
+              request={this.state.requests.includes(user)}
+              handleRequest={() => this.handleRequest(user)}
+            />
+          )) }
+        </StyledUsers>
       </StyledSession>
     );
   }
