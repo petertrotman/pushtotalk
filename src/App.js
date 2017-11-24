@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Home from './Home';
 import Create from './Create';
 import Session from './Session';
+import Name from './Name';
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -24,7 +25,6 @@ const StyledApp = styled.div`
 class App extends React.Component {
   constructor() {
     super();
-
     this.state = {
       user: window.localStorage.getItem('user') || '',
     };
@@ -52,7 +52,8 @@ class App extends React.Component {
           <StyledApp>
             <Route exact path="/" render={this.withUser(Home)} />
             <Route path="/create" render={this.withUser(Create)} />
-            <Route path="/session/:sessionId?" render={this.withUser(Session)} />
+            <Route exact path="/session/:sessionId" render={this.withUser(Session)} />
+            <Route path="/session/:sessionId/name" render={this.withUser(Name)} />
           </StyledApp>
         </LayoutContainer>
       </Router>

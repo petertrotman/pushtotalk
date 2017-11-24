@@ -34,23 +34,23 @@ class Home extends React.Component {
   }
 
   handleUserChange(e) {
-    this.props.handleChangeUser(e.target.value);
+    return this.props.handleChangeUser(e.target.value);
   }
 
   handleSessionIdChange(e) {
-    this.setState({ sessionId: e.target.value });
+    return this.setState({ sessionId: e.target.value });
   }
 
   handleJoin(e) {
     e.preventDefault();
-    this.props.history.push({
+    return this.props.history.push({
       pathname: `/session/${this.state.sessionId}`,
     });
   }
 
   handleNew(e) {
     e.preventDefault();
-    this.props.history.push({
+    return this.props.history.push({
       pathname: '/create',
     });
   }
